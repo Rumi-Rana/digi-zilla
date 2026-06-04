@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Digizilla | Full-Service Digital Agency</title>
+  <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: #ffffff;
+      color: #1a2c3e;
+      scroll-behavior: smooth;
+    }
+    :root {
+      --digi-primary: #e85d04;
+      --digi-dark: #03071e;
+    }
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #e85d04, #ff9100);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .nav-link {
+      font-weight: 600;
+      color: #2d3e50;
+      transition: 0.2s;
+    }
+    .nav-link:hover {
+      color: #e85d04;
+    }
+    .btn-digi {
+      background: #e85d04;
+      color: white;
+      border-radius: 40px;
+      padding: 10px 28px;
+      font-weight: 600;
+      transition: 0.2s;
+      border: none;
+    }
+    .btn-digi:hover {
+      background: #bc4a00;
+      transform: translateY(-2px);
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      border-radius: 40px;
+      padding: 12px 24px;
+      font-weight: 600;
+      transition: 0.2s;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-whatsapp:hover {
+      background: #1da851;
+      transform: translateY(-2px);
+      color: white;
+    }
+    .hero {
+      background: linear-gradient(145deg, #fff7f0 0%, #ffffff 100%);
+      padding: 100px 0 80px;
+      border-bottom: 1px solid #ffe0c0;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .hero-highlight {
+      color: #e85d04;
+    }
+    .word-cluster {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: 0.8rem 1.5rem;
+      justify-content: center;
+      background: #fff2e6;
+      padding: 2rem 1rem;
+      border-radius: 60px;
+      margin-top: 2rem;
+    }
+    .word-cluster span {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: #b64900;
+      background: white;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .section-title {
+      font-size: 2.3rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: #e85d04;
+      margin: 0.8rem auto 0;
+      border-radius: 4px;
+    }
+    /* ===== FULLY RESPONSIVE FLIP CARDS (NO FIXED HEIGHT) ===== */
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: auto;
+      min-height: 380px;
+      perspective: 1500px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      border-radius: 28px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      backface-visibility: hidden;
+      border-radius: 28px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+    }
+    .flip-front {
+      background: white;
+      border: 1px solid #f0d5bc;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .flip-back {
+      background: #e85d04;
+      color: white;
+      transform: rotateY(180deg);
+      text-align: center;
+    }
+    .flip-back p, .flip-back ul {
+      color: white;
+    }
+    .flip-back ul {
+      text-align: left;
+      padding-left: 1.2rem;
+    }
+    .service-icon {
+      font-size: 3.5rem;
+      color: #e85d04;
+      margin-bottom: 1.2rem;
+    }
+    .flip-front h4 {
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .btn-flip-detail {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid white;
+      color: white;
+      border-radius: 40px;
+      padding: 6px 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-flip-detail:hover {
+      background: white;
+      color: #e85d04;
+    }
+    .why-card {
+      background: #fef9f4;
+      border-radius: 24px;
+      padding: 2rem;
+      transition: 0.2s;
+      height: 100%;
+      border: 1px solid #ffe4d0;
+    }
+    .why-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #e85d04;
+    }
+    .about-img-placeholder {
+      background: linear-gradient(135deg, #fff2e6, #ffe6d5);
+      border-radius: 36px;
+      padding: 2rem;
+      text-align: center;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .contact-info {
+      background: #fef5ed;
+      border-radius: 28px;
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .qr-container {
+      background: white;
+      border-radius: 24px;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .qr-container img {
+      max-width: 180px;
+      height: auto;
+      margin: 0 auto;
+    }
+    footer {
+      background: #03071e;
+      color: #cbd5e6;
+    }
+    footer a {
+      color: #ffba7a;
+    }
+
+    /* ========== RESPONSIVE BREAKPOINTS (ALL DEVICES) ========== */
+    @media (max-width: 1200px) {
+      .hero h1 { font-size: 3.2rem; }
+    }
+    @media (max-width: 992px) {
+      .navbar-brand { font-size: 1.8rem; }
+      .hero h1 { font-size: 2.8rem; }
+      .section-title { font-size: 2rem; }
+      .word-cluster { grid-template-columns: repeat(3, auto); gap: 0.6rem 1.2rem; }
+    }
+    @media (max-width: 768px) {
+      .navbar-brand { font-size: 1.5rem; }
+      .hero { padding: 60px 0 50px; }
+      .hero h1 { font-size: 2.2rem; }
+      .lead { font-size: 1rem; }
+      .btn-digi, .btn-whatsapp { padding: 8px 20px; font-size: 0.9rem; }
+      .word-cluster { grid-template-columns: repeat(2, auto); padding: 1.5rem 1rem; gap: 0.5rem 1rem; }
+      .word-cluster span { font-size: 0.9rem; padding: 0.35rem 0.8rem; }
+      .service-icon { font-size: 2.8rem; }
+      .section-title { font-size: 1.8rem; margin-bottom: 2rem; }
+      .why-number { font-size: 2rem; }
+      .why-card { padding: 1.5rem; }
+      .contact-info { margin: 0 1rem; }
+      .flip-card, .flip-card-inner { min-height: 360px; }
+    }
+    @media (max-width: 576px) {
+      .navbar-brand { font-size: 1.3rem; }
+      .nav-link { font-size: 0.9rem !important; }
+      .hero { padding: 40px 0 35px; }
+      .hero h1 { font-size: 1.8rem; }
+      .lead { font-size: 0.9rem; margin-bottom: 1rem !important; }
+      .btn-digi, .btn-outline-secondary, .btn-whatsapp {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0 !important;
+        text-align: center;
+        justify-content: center;
+      }
+      .flip-card, .flip-card-inner { min-height: 340px; }
+      .flip-front, .flip-back { padding: 1.2rem 1rem !important; }
+      .service-icon { font-size: 2.5rem; }
+      .flip-front h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+      .flip-front p { font-size: 0.85rem; }
+      .flip-back h5 { font-size: 1rem; }
+      .flip-back ul { font-size: 0.75rem; padding-left: 0.8rem; }
+      .btn-flip-detail { padding: 4px 12px; font-size: 0.75rem; }
+      .section-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+      .section-title:after { width: 50px; }
+      .why-number { font-size: 1.8rem; }
+      .why-card { padding: 1rem; }
+      .why-card h5 { font-size: 1rem; }
+      .why-card p { font-size: 0.8rem; }
+      .about-img-placeholder { padding: 1.5rem; margin-bottom: 1.5rem; }
+      .about-img-placeholder i { font-size: 3rem !important; }
+      .badge { font-size: 0.7rem; padding: 0.3rem 0.6rem !important; }
+      .contact-info { padding: 1.2rem; }
+      .qr-container img { max-width: 140px; }
+      footer .navbar-brand { font-size: 1.2rem; }
+      footer p, footer li { font-size: 0.8rem; }
+    }
+    @media (max-width: 375px) {
+      .navbar-brand { font-size: 1.1rem; }
+      .hero h1 { font-size: 1.6rem; }
+      .hero-highlight { display: block; }
+      .word-cluster { grid-template-columns: 1fr 1fr; gap: 0.4rem; padding: 1rem 0.8rem; }
+      .word-cluster span { font-size: 0.75rem; padding: 0.25rem 0.6rem; }
+      .flip-card, .flip-card-inner { min-height: 320px; }
+      .section-title { font-size: 1.3rem; }
+      .service-icon { font-size: 2.2rem; }
+      .flip-front h4 { font-size: 0.9rem; }
+      .btn-whatsapp { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-2">
+  <div class="container">
+    <a class="navbar-brand" href="#">Digizilla</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#digiNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="digiNavbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#whyus">Why Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-digi ms-lg-3 mt-2 mt-lg-0">Start Project</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1>Dominate Digital with <span class="hero-highlight">Digizilla</span></h1>
+        <p class="lead my-4">Web development, social fuel, SEO power — one agency that builds, scales, and roars.</p>
+        <a href="#services" class="btn btn-digi me-3">Explore Services</a>
+        <a href="#contact" class="btn btn-outline-secondary rounded-pill px-4">Free Strategy Call</a>
+      </div>
+      <div class="col-lg-5 mt-5 mt-lg-0">
+        <div class="word-cluster">
+          <span>BRAND</span> <span>STRATEGY</span> <span>CREATIVE</span> <span>MARKETING</span>
+          <span>AGENCY</span> <span>RESULTS</span> <span>DIGITAL</span> <span>STRATEGY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section: 3 Flip Cards (Fully Responsive) -->
+<section id="services" class="py-5">
+  <div class="container py-4">
+    <div class="section-title">What We Roar About</div>
+    <div class="row g-4">
+      <!-- Card 1: Web Dev + Design + Ecommerce -->
+      <div class="col-md-6 col-lg-4">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="service-icon"><i class="bi bi-code-square"></i></div>
+              <h4>Web Dev & Design</h4>
+              <p>Custom websites, Shopify, eCommerce solutions</p>
+              <i class="bi bi-arrow-repeat" style="font-size:1.8rem; color:#e85d04; opacity:0.6;"></i>
+              <small>hover to flip →</small>
+            </div>
+            <div class="flip-back">
+              <i class="bi bi-cart-check" style="font-size:2.5rem;"></i>
+              <h5 class="mt-2">Full-stack eCommerce</h5>
+              <ul class="small">
+                <li>Shopify + WooCommerce</li>
+                <li>Custom coded websites</li>
+                <li>Responsive UI/UX design</li>
+                <li>High-performance stores</li>
+              </ul>
+              <span class="btn-flip-detail">→ Let's build</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Social Media Marketing + Meta Ads -->
+      <div class="col-md-6 col-lg-4">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="service-icon"><i class="bi bi-megaphone-fill"></i></div>
+              <h4>Social Media & Ads</h4>
+              <p>Meta (Facebook/IG) Ads, TikTok, campaign management</p>
+              <i class="bi bi-arrow-repeat" style="font-size:1.8rem; color:#e85d04; opacity:0.6;"></i>
+              <small>hover to flip →</small>
+            </div>
+            <div class="flip-back">
+              <i class="bi bi-instagram" style="font-size:2.5rem;"></i>
+              <h5 class="mt-2">Full-funnel Social</h5>
+              <ul class="small">
+                <li>Meta Ads setup & optimization</li>
+                <li>Creative strategy & copy</li>
+                <li>Community management</li>
+                <li>Monthly performance reports</li>
+              </ul>
+              <span class="btn-flip-detail">→ Grow socials</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: SEO + Content + Video Editing -->
+      <div class="col-md-6 col-lg-4">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="service-icon"><i class="bi bi-graph-up"></i></div>
+              <h4>SEO & Content Studio</h4>
+              <p>SEO, content writing, video editing, YouTube growth</p>
+              <i class="bi bi-arrow-repeat" style="font-size:1.8rem; color:#e85d04; opacity:0.6;"></i>
+              <small>hover to flip →</small>
+            </div>
+            <div class="flip-back">
+              <i class="bi bi-camera-reels-fill" style="font-size:2.5rem;"></i>
+              <h5 class="mt-2">Rank & Engage</h5>
+              <ul class="small">
+                <li>On/off-page SEO, keyword research</li>
+                <li>Blog posts & web copy</li>
+                <li>Video editing (reels, tutorials)</li>
+                <li>YouTube channel optimization</li>
+              </ul>
+              <span class="btn-flip-detail">→ Boost visibility</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5 bg-light">
+  <div class="container py-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="about-img-placeholder">
+          <i class="bi bi-robot" style="font-size: 4rem; color:#e85d04;"></i>
+          <h4 class="mt-3">Digital roar since 2025</h4>
+          <p class="mt-2">We blend creativity, technology, and data to make brands unstoppable.</p>
+          <div class="d-flex gap-3 mt-3">
+            <span class="badge bg-white text-dark border px-3 py-2">50+ Projects</span>
+            <span class="badge bg-white text-dark border px-3 py-2">98% Retention</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h2 class="fw-bold">All about <span class="text-warning">Digizilla</span></h2>
+        <p class="lead">We're not just another agency — we're a full-stack digital powerhouse. From building custom websites and Shopify empires to running Meta campaigns that convert, plus SEO and video editing that brings your story to life.</p>
+        <p>Our mission: help businesses dominate their niche with transparent strategies, creative flair, and measurable ROI. Whether you need a brand new site, social media domination, or content that ranks, we deliver results.</p>
+        <div class="row mt-4">
+          <div class="col-6"><i class="bi bi-check-lg text-success"></i> Web + eCommerce</div>
+          <div class="col-6"><i class="bi bi-check-lg text-success"></i> Meta & TikTok Ads</div>
+          <div class="col-6"><i class="bi bi-check-lg text-success"></i> SEO & Content</div>
+          <div class="col-6"><i class="bi bi-check-lg text-success"></i> Video Editing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section id="whyus" class="py-5">
+  <div class="container py-4">
+    <div class="section-title">Why Choose Digizilla</div>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="why-card">
+          <div class="why-number">150+</div>
+          <h5 class="fw-bold">Projects Delivered</h5>
+          <p class="text-secondary">Websites, campaigns, and brands scaled globally</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="why-card">
+          <div class="why-number">24/7</div>
+          <h5 class="fw-bold">Support & Strategy</h5>
+          <p class="text-secondary">Dedicated account manager, real-time reports</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="why-card">
+          <div class="why-number">3x ROI</div>
+          <h5 class="fw-bold">Average Growth</h5>
+          <p class="text-secondary">Data-driven approach, proven across niches</p>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <p class="fs-5">We don't just "do digital" — we craft digital dominance with transparency and creativity. Every strategy is tailored to YOUR business goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section: WhatsApp Button + QR Code + Email (No Form, Fully Responsive) -->
+<section id="contact" class="py-5 bg-light">
+  <div class="container py-4">
+    <div class="section-title">Let's Talk Growth</div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="contact-info">
+          <h4 class="text-center mb-4"><i class="bi bi-chat-dots-fill me-2"></i> Connect With Us</h4>
+          <div class="my-4">
+            <a href="https://wa.me/qr/QPOKKK7OXRW4J1" target="_blank" class="btn btn-whatsapp w-100 justify-content-center">
+              <i class="bi bi-whatsapp fs-4"></i> Chat on WhatsApp
+            </a>
+          </div>
+          <div class="qr-container">
+            <p class="mb-2 fw-semibold">Scan to chat on WhatsApp</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://wa.me/qr/QPOKKK7OXRW4J1" alt="WhatsApp QR Code" width="180" height="180" loading="lazy">
+            <p class="mt-2 small text-secondary">Open WhatsApp → Tap menu → Scan QR code</p>
+          </div>
+          <hr class="my-3">
+          <p class="text-center"><i class="bi bi-envelope-fill me-2"></i> 📧 <strong>digizillaxagency@gmail.com</strong></p>
+          <p class="text-center"><i class="bi bi-geo-alt-fill me-2"></i> 📍 Virtual HQ – serving clients worldwide</p>
+          <hr>
+          <div class="d-flex gap-3 fs-4 justify-content-center">
+            <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="text-dark"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
+          </div>
+          <div class="mt-4 p-3 bg-white rounded-3 text-center">
+            <i class="bi bi-clock-history text-warning"></i>  Response within 24h
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 mt-4">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-5">
+        <a class="navbar-brand text-white" href="#">Digizilla</a>
+        <p class="small opacity-75 mt-2">Full-service digital agency — web, social, SEO, video & beyond.</p>
+      </div>
+      <div class="col-md-3">
+        <h6 class="fw-bold">Explore</h6>
+        <ul class="list-unstyled small">
+          <li><a href="#home" class="text-white-50 text-decoration-none">Home</a></li>
+          <li><a href="#services" class="text-white-50 text-decoration-none">Services</a></li>
+          <li><a href="#about" class="text-white-50 text-decoration-none">About</a></li>
+          <li><a href="#contact" class="text-white-50 text-decoration-none">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6 class="fw-bold">Contact</h6>
+        <p class="small">digizillaxagency@gmail.com</p>
+        <p class="small">© 2026 Digizilla Agency. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  (function() {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === "#" || targetId === "") return;
+        const targetElem = document.querySelector(targetId);
+        if (targetElem) {
+          e.preventDefault();
+          targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, null, targetId);
+        }
+      });
+    });
+
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll("section[id]");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      const scrollPos = window.scrollY + 150;
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+          current = section.getAttribute("id");
+        }
+      });
+      document.querySelectorAll(".nav-link").forEach(link => {
+        link.classList.remove("active");
+        const href = link.getAttribute("href")?.substring(1);
+        if (href === current) link.classList.add("active");
+      });
+    });
+  })();
+</script>
+</body>
+</html>
